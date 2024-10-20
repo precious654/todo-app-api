@@ -9,6 +9,10 @@
   "author": "Precious Odukwe",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.21.1"
+    "body-parser": "^1.20.3",
+    "express": "^4.21.1",
+    "mongodb": "^6.9.0",
+    "mongoose": "^8.7.2",
+    "morgan": "^1.10.0"
   }
 }
