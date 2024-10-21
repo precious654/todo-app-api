@@ -2,8 +2,15 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 
 const taskRoutes = require("./api/routes/task");
+
+mongoose.connect(
+  "mongodb+srv://odukwechiemeka:" +
+    process.env.MONGO_ATLAS_PW +
+    "@todo-app-api.ztrhl.mongodb.net/?retryWrites=true&w=majority&appName=todo-app-api"
+);
 
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
