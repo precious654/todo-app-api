@@ -62,6 +62,30 @@ router.get("/", (req, res, next) => {
     });
 });
 
+router.get("/:taskId", (req, res, next) => {
+  const id = req.params.taskId;
+  Task.findById(id)
+   .select("title description _id")
+   .exec()
+   .then((task) => {
+      if (!task) {
+        return res.status(404).json({ message: "Task not found" });
+      }
+      res.status(200).json({
+        task: task,
+        request: {
+          type: "GET",
+          url: "http://localhost:3000/task",
+          description: "Get all tasks",
+        },
+      });
+    })
+   .catch((err) => {
+      console.error(err);
+      res.status(500).json({ error: err });
+    });
+})
+
 router.delete("/:taskId", (req, res, next) => {
   const id = req.params.taskId;
   Task.deleteOne({ _id: id })
